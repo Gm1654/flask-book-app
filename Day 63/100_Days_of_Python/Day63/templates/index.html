@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+    <style>
+        .action-buttons {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .action-buttons:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>My Library</h1>
+    {% if book_list == []: %}
+        <p>Library is empty.</p>
+    {% else: %}
+        <ul>
+            {% for book in book_list: %}
+            <li>
+                {{ book.title }} - {{ book.author }} - {{ book.rating }}/10
+                <a class="action-buttons" href="{{ url_for('delete', book_id=book.id) }}">Delete</a>
+                <a class="action-buttons" href="{{ url_for('edit_rating', book_id=book.id) }}">Edit Rating</a>
+           
+            </li>
+        </br>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+<a class="action-buttons" href="{{ url_for('add') }}">Add New Book</a>
+</body>
+</html>
+
+
+
+
+
